@@ -6,14 +6,15 @@
   <title>Noor Mobile Accessories Fafde bhai ke</title>
   <style>
     :root {
-      --bg: #F8FAFC;
+      --bg: #FFFFFF;
       --card: #FFFFFF;
       --text: #0F172A;
-      --primary: #2563EB;
+      --primary: #16A34A;
       --success: #16A34A;
       --warning: #EAB308;
       --muted: #64748B;
-      --border: #E2E8F0;
+      --border: #E8F5E9;
+      --toolbar: #1F2937;
     }
     * { box-sizing: border-box; }
     body {
@@ -35,6 +36,17 @@
       border-radius: 14px;
       padding: 14px;
       box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    }
+    header.panel {
+      background: var(--toolbar);
+      color: #FFFFFF;
+      border-color: var(--toolbar);
+    }
+    header.panel h1 {
+      color: #FFFFFF;
+    }
+    header.panel .clock {
+      color: #D1D5DB;
     }
     h1 {
       margin: 0 0 8px;
@@ -68,7 +80,7 @@
     input:focus, select:focus {
       outline: none;
       border-color: var(--primary);
-      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+      box-shadow: 0 0 0 3px rgba(22, 163, 74, 0.18);
     }
     .grid-cards {
       display: grid;
