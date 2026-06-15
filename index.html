@@ -160,16 +160,8 @@
           </div>
           <input type="hidden" id="locality" name="locality" required />
 
-          <label>Type of Service</label>
-          <div class="grid-cards" data-target="service">
-            <button type="button" class="card-option" data-group="service" data-value="Tempered Glass">Tempered Glass</button>
-            <button type="button" class="card-option" data-group="service" data-value="Back Cover">Back Cover</button>
-            <button type="button" class="card-option" data-group="service" data-value="Earphones">Earphones</button>
-            <button type="button" class="card-option" data-group="service" data-value="Charger/Cable">Charger/Cable</button>
-            <button type="button" class="card-option" data-group="service" data-value="Mobile Repair">Mobile Repair</button>
-            <button type="button" class="card-option" data-group="service" data-value="Other">Other</button>
-          </div>
-          <input type="hidden" id="service" name="service" required />
+          <label for="service">Type of Service</label>
+          <input id="service" name="service" autocomplete="off" required placeholder="e.g., Tempered Glass, Back Cover, Mobile Repair" />
 
           <label for="amountPaid">Amount Paid by Customer (₹)</label>
           <input id="amountPaid" name="amountPaid" inputmode="decimal" required />
@@ -251,6 +243,11 @@
       });
       const hiddenInput = document.getElementById(group);
       if (hiddenInput) hiddenInput.value = value || '';
+    }
+
+    function setInputValue(fieldId, value) {
+      const input = document.getElementById(fieldId);
+      if (input) input.value = value || '';
     }
 
     function bindCardOptions() {
@@ -344,7 +341,7 @@
         form.reset();
         setCardSelection('customerType', 'New');
         setCardSelection('locality', '');
-        setCardSelection('service', '');
+        setInputValue('service', '');
         updateProfitLabel();
         await loadCustomers();
       } catch (error) {
