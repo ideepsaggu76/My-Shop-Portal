@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Noor Mobile Accessories Fafde bhai ke</title>
+  <style>
+    :root {
+      --bg: #F8FAFC;
+      --card: #FFFFFF;
+      --text: #0F172A;
+      --primary: #2563EB;
+      --success: #16A34A;
+      --warning: #EAB308;
+      --muted: #64748B;
+      --border: #E2E8F0;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, "Segoe UI", Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 16px;
+      display: grid;
+      gap: 16px;
+    }
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 14px;
+      box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 1.25rem;
+    }
+    .clock {
+      font-weight: 600;
+      color: var(--muted);
+    }
+    .two-col {
+      display: grid;
+      gap: 16px;
+    }
+    @media (min-width: 900px) {
+      .two-col { grid-template-columns: 2fr 1fr; }
+    }
+    label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      display: block;
+      margin: 12px 0 8px;
+    }
+    input, select, button {
+      width: 100%;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 12px;
+      font-size: 1rem;
+      background: #fff;
+    }
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.18);
+    }
+    .grid-cards {
+      display: grid;
+      gap: 8px;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    }
+    .card-option {
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      padding: 10px;
+      border-radius: 10px;
+      font-weight: 600;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+      transition: all 0.15s ease;
+    }
+    .card-option:hover { border-color: var(--primary); }
+    .card-option.active {
+      background: var(--primary);
+      border-color: var(--primary);
+      color: #fff;
+    }
+    .warning-box {
+      background: #FFFFFF;
+      border: 4px solid var(--warning);
+      border-radius: 10px;
+      padding: 12px;
+      font-weight: 700;
+      min-height: 52px;
+    }
+    .history-details {
+      margin-top: 12px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+    .submit-btn {
+      margin-top: 14px;
+      border: none;
+      background: var(--success);
+      color: #fff;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+    .status {
+      margin-top: 10px;
+      font-weight: 600;
+    }
+    .status.ok { color: var(--success); }
+    .status.err { color: #B91C1C; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header class="panel">
+      <h1>Noor Mobile Accessories Fafde bhai ke</h1>
+      <div id="liveClock" class="clock">Loading date...</div>
+    </header>
+
+    <div class="two-col">
+      <section class="panel">
+        <form id="entryForm">
+          <label for="customerSelect">Select Repeat Customer (optional)</label>
+          <select id="customerSelect">
+            <option value="">-- Select past customer --</option>
+          </select>
+
+          <label for="customerName">Customer Name</label>
+          <input id="customerName" name="customerName" autocomplete="off" required placeholder="Type only for new customer" />
+
+          <label>Customer Type</label>
+          <div class="grid-cards" data-target="customerType">
+            <button type="button" class="card-option active" data-group="customerType" data-value="New">New</button>
+            <button type="button" class="card-option" data-group="customerType" data-value="Repeated">Repeated</button>
+          </div>
+          <input type="hidden" id="customerType" name="customerType" value="New" />
+
+          <label>Locality</label>
+          <div class="grid-cards" data-target="locality">
+            <button type="button" class="card-option" data-group="locality" data-value="Villager">Villager</button>
+            <button type="button" class="card-option" data-group="locality" data-value="Random">Random</button>
+          </div>
+          <input type="hidden" id="locality" name="locality" required />
+
+          <label>Type of Service</label>
+          <div class="grid-cards" data-target="service">
+            <button type="button" class="card-option" data-group="service" data-value="Tempered Glass">Tempered Glass</button>
+            <button type="button" class="card-option" data-group="service" data-value="Back Cover">Back Cover</button>
+            <button type="button" class="card-option" data-group="service" data-value="Earphones">Earphones</button>
+            <button type="button" class="card-option" data-group="service" data-value="Charger/Cable">Charger/Cable</button>
+            <button type="button" class="card-option" data-group="service" data-value="Mobile Repair">Mobile Repair</button>
+            <button type="button" class="card-option" data-group="service" data-value="Other">Other</button>
+          </div>
+          <input type="hidden" id="service" name="service" required />
+
+          <label for="amountPaid">Amount Paid by Customer (₹)</label>
+          <input id="amountPaid" name="amountPaid" inputmode="decimal" required />
+
+          <label for="productCost">Product Cost / Spending (₹)</label>
+          <input id="productCost" name="productCost" inputmode="decimal" required />
+
+          <label for="uniqueNote">Unique Identifier Note</label>
+          <input id="uniqueNote" name="uniqueNote" autocomplete="off" placeholder="e.g., White Splendor" />
+
+          <button id="submitBtn" class="submit-btn" type="submit">Save Entry (Net Profit: ₹0)</button>
+          <div id="statusMessage" class="status" aria-live="polite"></div>
+        </form>
+      </section>
+
+      <aside class="panel">
+        <div id="historyWarning" class="warning-box">⚠️ Last Visit: Not available</div>
+        <div id="historyDetails" class="history-details">Select an existing customer to auto-fill repeat details.</div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    const liveClock = document.getElementById('liveClock');
+    const form = document.getElementById('entryForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const statusMessage = document.getElementById('statusMessage');
+    const customerSelect = document.getElementById('customerSelect');
+    const historyWarning = document.getElementById('historyWarning');
+    const historyDetails = document.getElementById('historyDetails');
+
+    const customerCache = new Map();
+
+    function updateClock() {
+      const now = new Date();
+      liveClock.textContent = now.toLocaleString('en-IN', {
+        weekday: 'short',
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        second: '2-digit'
+      });
+    }
+
+    function formatRelativeTime(isoDate) {
+      if (!isoDate) return 'Not available';
+      const then = new Date(isoDate);
+      if (Number.isNaN(then.getTime())) return 'Not available';
+      const seconds = Math.max(1, Math.floor((Date.now() - then.getTime()) / 1000));
+      const units = [
+        ['year', 31536000],
+        ['month', 2592000],
+        ['week', 604800],
+        ['day', 86400],
+        ['hour', 3600],
+        ['minute', 60]
+      ];
+      for (const [label, size] of units) {
+        if (seconds >= size) {
+          const value = Math.floor(seconds / size);
+          return `${value} ${label}${value > 1 ? 's' : ''} ago`;
+        }
+      }
+      return `${seconds} second${seconds > 1 ? 's' : ''} ago`;
+    }
+
+    function updateProfitLabel() {
+      const amount = Number(document.getElementById('amountPaid').value) || 0;
+      const cost = Number(document.getElementById('productCost').value) || 0;
+      submitBtn.textContent = `Save Entry (Net Profit: ₹${amount - cost})`;
+    }
+
+    function setCardSelection(group, value) {
+      document.querySelectorAll(`.card-option[data-group="${group}"]`).forEach((btn) => {
+        const active = btn.dataset.value === value;
+        btn.classList.toggle('active', active);
+      });
+      const hiddenInput = document.getElementById(group);
+      if (hiddenInput) hiddenInput.value = value || '';
+    }
+
+    function bindCardOptions() {
+      document.querySelectorAll('.card-option').forEach((btn) => {
+        btn.addEventListener('click', () => {
+          setCardSelection(btn.dataset.group, btn.dataset.value);
+        });
+      });
+    }
+
+    function toOptionLabel(item) {
+      const note = (item.uniqueNote || '').trim();
+      return note ? `${item.customerName} [${note}]` : item.customerName;
+    }
+
+    async function loadCustomers() {
+      try {
+        customerCache.clear();
+        customerSelect.innerHTML = '<option value="">-- Select past customer --</option>';
+        const response = await fetch('?action=customers', { method: 'GET' });
+        if (!response.ok) throw new Error('Unable to load customer history');
+        const data = await response.json();
+        const list = Array.isArray(data.customers) ? data.customers : [];
+        list.forEach((item) => {
+          const key = toOptionLabel(item);
+          customerCache.set(key, item);
+          const option = document.createElement('option');
+          option.value = key;
+          option.textContent = key;
+          customerSelect.appendChild(option);
+        });
+      } catch (error) {
+        historyDetails.textContent = 'Customer history could not load. You can still save entries manually.';
+      }
+    }
+
+    customerSelect.addEventListener('change', () => {
+      const selected = customerCache.get(customerSelect.value);
+      if (!selected) {
+        historyWarning.textContent = '⚠️ Last Visit: Not available';
+        historyDetails.textContent = 'Select an existing customer to auto-fill repeat details.';
+        return;
+      }
+
+      document.getElementById('customerName').value = selected.customerName || '';
+      document.getElementById('uniqueNote').value = selected.uniqueNote || '';
+      setCardSelection('customerType', 'Repeated');
+      setCardSelection('locality', selected.locality || '');
+      historyWarning.textContent = `⚠️ Last Visit: ${formatRelativeTime(selected.lastVisitISO)}`;
+      historyDetails.textContent = `Last service: ${selected.service || 'N/A'} | Last amount: ₹${selected.amountPaid || 0}`;
+    });
+
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      statusMessage.textContent = '';
+      statusMessage.className = 'status';
+
+      const payload = {
+        customerName: document.getElementById('customerName').value.trim(),
+        customerType: document.getElementById('customerType').value,
+        locality: document.getElementById('locality').value,
+        service: document.getElementById('service').value,
+        amountPaid: Number(document.getElementById('amountPaid').value) || 0,
+        productCost: Number(document.getElementById('productCost').value) || 0,
+        uniqueNote: document.getElementById('uniqueNote').value.trim()
+      };
+
+      if (!payload.customerName || !payload.customerType || !payload.locality || !payload.service) {
+        statusMessage.textContent = 'Please fill/select all required fields.';
+        statusMessage.classList.add('err');
+        return;
+      }
+
+      submitBtn.disabled = true;
+      try {
+        const response = await fetch('', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const result = await response.json();
+        if (!response.ok || !result.success) {
+          throw new Error(result.message || 'Unable to save entry');
+        }
+
+        statusMessage.textContent = `Saved! Serial No: ${result.serialNo}, Profit: ₹${result.profit}`;
+        statusMessage.classList.add('ok');
+        historyWarning.textContent = '⚠️ Last Visit: Just now';
+        historyDetails.textContent = `Saved at ${new Date().toLocaleTimeString('en-IN')}.`;
+
+        form.reset();
+        setCardSelection('customerType', 'New');
+        setCardSelection('locality', '');
+        setCardSelection('service', '');
+        updateProfitLabel();
+        await loadCustomers();
+      } catch (error) {
+        statusMessage.textContent = error.message || 'Something went wrong.';
+        statusMessage.classList.add('err');
+      } finally {
+        submitBtn.disabled = false;
+      }
+    });
+
+    ['amountPaid', 'productCost'].forEach((id) => {
+      document.getElementById(id).addEventListener('input', updateProfitLabel);
+    });
+
+    bindCardOptions();
+    updateProfitLabel();
+    updateClock();
+    setInterval(updateClock, 1000);
+    loadCustomers();
+  </script>
+</body>
+</html>
